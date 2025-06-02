@@ -328,10 +328,16 @@ const RoomOccupancySystem = () => {
                       'Sensors: ', React.createElement('span', { className: `font-semibold ${theme.text}` }, group.sensors.length), ' | ',
                       'Online: ', React.createElement('span', { className: `font-semibold ${theme.text}` }, group.sensors.filter(s => s.isOnline).length)
                     ),
-                    React.createElement('button', {
-                      onClick: () => deleteGroup(group.id),
-                      className: `px-2 py-1 ${theme.textSecondary} hover:text-red-500 hover:bg-red-500/20 rounded text-xs transition-colors duration-200`
-                    }, 'Delete')
+                    React.createElement('div', { className: "flex gap-1" },
+                      React.createElement('button', {
+                        onClick: () => startEditGroup(group),
+                        className: `px-2 py-1 ${theme.textSecondary} hover:${theme.text} hover:bg-gray-500/20 rounded text-xs transition-colors duration-200`
+                      }, 'Edit'),
+                      React.createElement('button', {
+                        onClick: () => deleteGroup(group.id),
+                        className: `px-2 py-1 ${theme.textSecondary} hover:text-red-500 hover:bg-red-500/20 rounded text-xs transition-colors duration-200`
+                      }, 'Delete')
+                    )
                   )
                 )
               ),
