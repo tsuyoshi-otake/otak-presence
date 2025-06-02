@@ -23,6 +23,22 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - name: Get commit info
+      id: commit
+      run: |
+        echo "sha_short=$(git rev-parse --short=7 HEAD)" >> $GITHUB_OUTPUT
+        echo "commit_date=$(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_OUTPUT
+
+    - name: Replace commit info in files
+      run: |
+        # Replace commit info in app.js
+        sed -i "s/{{COMMIT_SHA}}/${{ steps.commit.outputs.sha_short }}/g" app.js
+        sed -i "s/{{BUILD_DATE}}/${{ steps.commit.outputs.commit_date }}/g" app.js
+        
+        # Replace commit info in index.html
+        sed -i "s/{{COMMIT_SHA}}/${{ steps.commit.outputs.sha_short }}/g" index.html
+        sed -i "s/{{BUILD_DATE}}/${{ steps.commit.outputs.commit_date }}/g" index.html
+
     - name: Setup Pages
       uses: actions/configure-pages@v4
 

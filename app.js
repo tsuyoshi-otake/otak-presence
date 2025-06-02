@@ -47,6 +47,13 @@ const RoomOccupancySystem = () => {
   const [draggedItem, setDraggedItem] = useState(null);
   const [dragOverGroup, setDragOverGroup] = useState(null);
   const [currentTime, setCurrentTime] = useState(new Date());
+  
+  // Commit info (will be replaced by GitHub Actions in production)
+  const commitId = '{{COMMIT_SHA}}';
+  const buildDate = '{{BUILD_DATE}}';
+  
+  // Display commit info (fallback for development)
+  const displayCommitId = commitId === '{{COMMIT_SHA}}' ? 'dev' : commitId;
 
   // Auto-save to localStorage when state changes
   useEffect(() => {
@@ -301,6 +308,9 @@ const RoomOccupancySystem = () => {
               ),
               React.createElement('div', { className: "flex items-center gap-1" },
                 React.createElement('span', {}, 'Occupied: ', React.createElement('span', { className: `font-semibold ${theme.text}` }, occupiedSensors))
+              ),
+              React.createElement('div', { className: "flex items-center gap-1" },
+                React.createElement('span', {}, '- ', React.createElement('span', { className: `font-mono text-xs ${theme.textMuted}` }, displayCommitId))
               )
             )
           ),
