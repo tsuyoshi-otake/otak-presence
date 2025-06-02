@@ -150,6 +150,21 @@ const RoomOccupancySystem = () => {
     setEditingSensor(null);
   };
 
+  const startEditGroup = (group) => {
+    setEditingGroup({ ...group });
+    setShowEditGroupModal(true);
+  };
+
+  const saveEditGroup = () => {
+    setGroups(prev =>
+      prev.map(group =>
+        group.id === editingGroup.id ? editingGroup : group
+      )
+    );
+    setShowEditGroupModal(false);
+    setEditingGroup(null);
+  };
+
   const handleDragStart = (e, sensor) => {
     setDraggedItem(sensor);
     e.dataTransfer.effectAllowed = 'move';
