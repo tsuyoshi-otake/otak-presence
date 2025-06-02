@@ -1,6 +1,6 @@
-# Room Occupancy System
+# otak-presence
 
-Room Occupancy Systemは、センサーを使った部屋の占有状況を管理するWebアプリケーションです。GitHub Pages上で動作し、設定はブラウザのLocalStorageに自動保存されます。
+otak-presenceは、センサーを使った部屋の占有状況を管理するWebアプリケーションです。GitHub Pages上で動作し、設定はブラウザのLocalStorageに自動保存されます。
 
 ## 機能
 
@@ -56,9 +56,9 @@ GitHub Actionsを使用してmainブランチから自動デプロイされま�
 
 ## LocalStorage仕様
 
-- `room-occupancy-sensors`: センサーデータ
-- `room-occupancy-groups`: グループデータ  
-- `room-occupancy-dark-mode`: ダークモード設定
+- `otak-presence-sensors`: センサーデータ
+- `otak-presence-groups`: グループデータ
+- `otak-presence-dark-mode`: ダークモード設定
 
 ## ライセンス
 

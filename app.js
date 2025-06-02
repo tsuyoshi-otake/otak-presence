@@ -3,9 +3,9 @@ const { useState, useEffect } = React;
 const RoomOccupancySystem = () => {
   // LocalStorage keys
   const STORAGE_KEYS = {
-    sensors: 'room-occupancy-sensors',
-    groups: 'room-occupancy-groups',
-    darkMode: 'room-occupancy-dark-mode'
+    sensors: 'otak-presence-sensors',
+    groups: 'otak-presence-groups',
+    darkMode: 'otak-presence-dark-mode'
   };
 
   // Load data from localStorage
@@ -261,7 +261,7 @@ const RoomOccupancySystem = () => {
         React.createElement('div', { className: "flex justify-between items-center" },
           React.createElement('div', {},
             React.createElement('h1', { className: `text-2xl font-bold ${theme.text} flex items-center gap-3` },
-              'Room Occupancy System',
+              'otak-presence',
               React.createElement('button', {
                 onClick: () => setIsDarkMode(!isDarkMode),
                 className: `px-3 py-1 text-xs rounded-md transition-colors ${
