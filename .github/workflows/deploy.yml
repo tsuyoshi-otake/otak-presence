@@ -3,8 +3,6 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   deploy:
@@ -31,13 +29,19 @@ jobs:
 
     - name: Replace commit info in files
       run: |
-        # Replace commit info in app.js
-        sed -i "s/{{COMMIT_SHA}}/${{ steps.commit.outputs.sha_short }}/g" app.js
-        sed -i "s/{{BUILD_DATE}}/${{ steps.commit.outputs.commit_date }}/g" app.js
+        # Replace commit info in app.js using different delimiter
+        sed -i "s|{{COMMIT_SHA}}|${{ steps.commit.outputs.sha_short }}|g" app.js
+        sed -i "s|{{BUILD_DATE}}|${{ steps.commit.outputs.commit_date }}|g" app.js
         
         # Replace commit info in index.html
-        sed -i "s/{{COMMIT_SHA}}/${{ steps.commit.outputs.sha_short }}/g" index.html
-        sed -i "s/{{BUILD_DATE}}/${{ steps.commit.outputs.commit_date }}/g" index.html
+        sed -i "s|{{COMMIT_SHA}}|${{ steps.commit.outputs.sha_short }}|g" index.html
+        sed -i "s|{{BUILD_DATE}}|${{ steps.commit.outputs.commit_date }}|g" index.html
+        
+        # Debug: Show the actual replacements
+        echo "Commit SHA: ${{ steps.commit.outputs.sha_short }}"
+        echo "Build Date: ${{ steps.commit.outputs.commit_date }}"
+        echo "Checking app.js for replacements:"
+        grep -n "COMMIT_SHA\|BUILD_DATE" app.js || echo "No placeholders found in app.js"
 
     - name: Setup Pages
       uses: actions/configure-pages@v4
