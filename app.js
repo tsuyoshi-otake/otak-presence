@@ -442,7 +442,7 @@ const RoomOccupancySystem = () => {
                   React.createElement('br'),
                   'assigned to groups'
                 ) :
-                React.createElement('div', { className: "grid grid-cols-2 gap-2" },
+                React.createElement('div', { className: "space-y-2" },
                   ...ungroupedSensors.map((sensor) =>
                     React.createElement('div', {
                       key: sensor.id,
